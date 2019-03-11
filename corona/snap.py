@@ -9,11 +9,17 @@ async def command(arguments):
     if not pyppeteer.chromium_downloader.check_chromium():
         print('Browser has not been setup. Please run "corona setup"')
 
+    extra_launch_args = {}
+
+    if arguments.disable_sandbox:
+        extra_launch_args['args'] = ['--no-sandbox', '--disable-setuid-sandbox']
+
     pyscript = await load_ext_pyscript(arguments)
 
     browser = await pyppeteer.launch({
         'ignoreHTTPSErrors': arguments.ignore_http_errors,
         'headless': True,
+        **extra_launch_args,
     })
     page = await browser.newPage()
 
