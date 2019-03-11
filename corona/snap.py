@@ -11,7 +11,10 @@ async def command(arguments):
 
     pyscript = await load_ext_pyscript(arguments)
 
-    browser = await pyppeteer.launch(headless=True)
+    browser = await pyppeteer.launch({
+        'ignoreHTTPSErrors': arguments.ignore_http_errors,
+        'headless': True,
+    })
     page = await browser.newPage()
 
     if arguments.auth_username and arguments.auth_password:

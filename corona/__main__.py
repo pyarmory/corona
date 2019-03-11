@@ -32,5 +32,6 @@ def setup_argparse():
     ss_parser.add_argument('--pyscript', type=str, help='Path to Python extension script')
     ss_parser.add_argument('--auth-username', type=str, help='Basic Auth Username')
     ss_parser.add_argument('--auth-password', type=str, help='Basic Auth Password')
+    ss_parser.add_argument('--ignore-http-errors', action='store_true', default=False)
 
     return parser
