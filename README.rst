@@ -17,6 +17,14 @@ Running
     corona snap https://google.com google.png
 
 
+Troubleshooting
+---------------
+
+Depending on your execution environment, you might need to disable the
+Chrome sandbox. To do so, add the ``--disable-sandbox`` argument; however,
+please be aware of the risks in doing this.
+
+
 Extension
 ---------
 The application allows for a couple of extension points via a python
