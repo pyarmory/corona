@@ -1,3 +1,4 @@
+import base64
 import collections
 import os
 import importlib
@@ -24,12 +25,14 @@ async def command(arguments):
     page = await browser.newPage()
 
     if arguments.auth_username and arguments.auth_password:
-        await page.authenticate({
-            'username': arguments.auth_username,
-            'password': arguments.auth_password
+        encoded = base64.b64encode(
+            f'{arguments.auth_username}:{arguments.auth_password}'.encode()
+        )
+        await page.setExtraHTTPHeaders({
+            'Authorization': f'Basic {encoded.decode()}',
         })
 
-    await page.goto(arguments.url)
+    await page.goto(arguments.url, {'waitUntil': 'networkidle2'})
     await page.setViewport({
         'width': arguments.viewport_width,
         'height': arguments.viewport_height,
