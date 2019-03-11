@@ -8,7 +8,7 @@ with open('README.rst') as f:
 
 setup(
     name='corona',
-    version='0.1.0',
+    version='0.1.1',
     description='Website Screenshot Utility',
     long_description=desc,
     url='https://github.com/pyarmory/corona',
