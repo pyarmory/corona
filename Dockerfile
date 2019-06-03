@@ -1,11 +1,15 @@
-FROM python:3.7
+FROM python:3.7-slim-stretch
 LABEL maintainer="github.com/pyarmory"
 
 RUN apt-get update && \
-    apt-get install -y chromium libatk-bridge2.0-0 libgtk-3-0
+    apt-get install -y chromium libatk-bridge2.0-0 libgtk-3-0 &&\
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+COPY ./ /opt/corona
 
 RUN mkdir -p /shots && \
-    pip install corona
+    pip install /opt/corona && \
+    rm -rf /opt/corona
 
 RUN adduser --disabled-password --gecos '' pptruser \
     && usermod -aG pptruser pptruser \
@@ -14,9 +18,7 @@ RUN adduser --disabled-password --gecos '' pptruser \
 
 USER pptruser
 
-RUN corona setup
-
 WORKDIR /shots
 VOLUME /shots
 
-ENTRYPOINT ["corona"]
+ENTRYPOINT ["corona", "--chrome-executable", "/usr/bin/chromium"]
