@@ -36,6 +36,13 @@ def setup_argparse():
     ss_parser.add_argument('--auth-password', type=str, help='Basic Auth Password')
     ss_parser.add_argument('--ignore-http-errors', action='store_true', default=False)
     ss_parser.add_argument('--disable-sandbox', action='store_true', default=False)
-
+    ss_parser.add_argument('--device-scale-factor', type=int, default=1)
+    ss_parser.add_argument('--is-mobile', action='store_true', default=False)
+    ss_parser.add_argument('--clip-x', type=int, default=0)
+    ss_parser.add_argument('--clip-y', type=int, default=0)
+    ss_parser.add_argument('--clip-height', type=int, help='Requires --clip-width')
+    ss_parser.add_argument('--clip-width', type=int, help='Requires --clip-height')
+    ss_parser.add_argument('--capture-full-page', action='store_true', default=False,
+                           help='Note: This overrides clipping settings')
 
     return parser
