@@ -7,10 +7,15 @@ import pyppeteer
 
 
 async def command(arguments):
-    if not pyppeteer.chromium_downloader.check_chromium():
+    chrome_path = arguments.chrome_executable
+
+    if not pyppeteer.chromium_downloader.check_chromium() and not chrome_path:
         print('Browser has not been setup. Please run "corona setup"')
 
     extra_launch_args = {}
+
+    if chrome_path:
+        extra_launch_args['executablePath'] = chrome_path
 
     if arguments.disable_sandbox:
         extra_launch_args['args'] = ['--no-sandbox', '--disable-setuid-sandbox']

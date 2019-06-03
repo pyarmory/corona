@@ -19,6 +19,8 @@ def main(argv=None):
 
 def setup_argparse():
     parser = argparse.ArgumentParser('Website Screenshot CLI Utility')
+    parser.add_argument('--chrome-executable', help='Path of pre-installed chrome')
+
     subparsers = parser.add_subparsers()
     subparsers.required = True
     subparsers.dest = 'command'
