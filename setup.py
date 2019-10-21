@@ -20,6 +20,7 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
     keywords='screenshot website',
     packages=find_packages(exclude=['contrib', 'docs', 'test*']),
